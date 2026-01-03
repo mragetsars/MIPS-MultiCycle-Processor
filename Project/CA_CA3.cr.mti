@@ -1,0 +1,93 @@
+C:/Users/mrage/Programs/Codes/Verilog/CA_CA3/codes/TestBench.v {1 {vlog -work work -stats=none C:/Users/mrage/Programs/Codes/Verilog/CA_CA3/codes/TestBench.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module tb_Processor
+
+Top level modules:
+	tb_Processor
+
+} {} {}} C:/Users/mrage/Programs/Codes/Verilog/CA_CA3/codes/Adder.v {1 {vlog -work work -stats=none C:/Users/mrage/Programs/Codes/Verilog/CA_CA3/codes/Adder.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module Adder16
+
+Top level modules:
+	Adder16
+
+} {} {}} C:/Users/mrage/Programs/Codes/Verilog/CA_CA3/codes/Memory.v {1 {vlog -work work -stats=none C:/Users/mrage/Programs/Codes/Verilog/CA_CA3/codes/Memory.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module Memory
+
+Top level modules:
+	Memory
+
+} {} {}} C:/Users/mrage/Programs/Codes/Verilog/CA_CA3/codes/TopModule.v {1 {vlog -work work -stats=none C:/Users/mrage/Programs/Codes/Verilog/CA_CA3/codes/TopModule.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module TopModule
+
+Top level modules:
+	TopModule
+
+} {} {}} C:/Users/mrage/Programs/Codes/Verilog/CA_CA3/codes/Register.v {1 {vlog -work work -stats=none C:/Users/mrage/Programs/Codes/Verilog/CA_CA3/codes/Register.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module Register16
+
+Top level modules:
+	Register16
+
+} {} {}} C:/Users/mrage/Programs/Codes/Verilog/CA_CA3/codes/RegisterFile.v {1 {vlog -work work -stats=none C:/Users/mrage/Programs/Codes/Verilog/CA_CA3/codes/RegisterFile.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module RegisterFile
+
+Top level modules:
+	RegisterFile
+
+} {} {}} C:/Users/mrage/Programs/Codes/Verilog/CA_CA3/codes/Extend.v {1 {vlog -work work -stats=none C:/Users/mrage/Programs/Codes/Verilog/CA_CA3/codes/Extend.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module ZeroExtend_12to16
+-- Compiling module BranchTargetCalc
+
+Top level modules:
+	ZeroExtend_12to16
+	BranchTargetCalc
+
+} {} {}} C:/Users/mrage/Programs/Codes/Verilog/CA_CA3/codes/ControlUnit.v {1 {vlog -work work -stats=none C:/Users/mrage/Programs/Codes/Verilog/CA_CA3/codes/ControlUnit.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module ControlUnit
+
+Top level modules:
+	ControlUnit
+
+} {} {}} C:/Users/mrage/Programs/Codes/Verilog/CA_CA3/codes/ALU.v {1 {vlog -work work -stats=none C:/Users/mrage/Programs/Codes/Verilog/CA_CA3/codes/ALU.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module ALU
+
+Top level modules:
+	ALU
+
+} {} {}} C:/Users/mrage/Programs/Codes/Verilog/CA_CA3/codes/Mux.v {1 {vlog -work work -stats=none C:/Users/mrage/Programs/Codes/Verilog/CA_CA3/codes/Mux.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module Mux2to1_16bit
+-- Compiling module Mux4to1_16bit
+-- Compiling module Mux2to1_3bit
+
+Top level modules:
+	Mux2to1_16bit
+	Mux4to1_16bit
+	Mux2to1_3bit
+
+} {} {}} C:/Users/mrage/Programs/Codes/Verilog/CA_CA3/codes/Constant.v {1 {vlog -work work -stats=none C:/Users/mrage/Programs/Codes/Verilog/CA_CA3/codes/Constant.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module Constant_1
+-- Compiling module Constant_0
+
+Top level modules:
+	Constant_1
+	Constant_0
+
+} {} {}} C:/Users/mrage/Programs/Codes/Verilog/CA_CA3/codes/Datapath.v {1 {vlog -work work -stats=none C:/Users/mrage/Programs/Codes/Verilog/CA_CA3/codes/Datapath.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module Datapath
+
+Top level modules:
+	Datapath
+
+} {} {}}
