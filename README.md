@@ -1,4 +1,4 @@
-# RISC-V Multi-Cycle Processor Implementation
+# MIPS Multi-Cycle Processor Implementation
 
 > **Computer Architecture - University of Tehran - Department of Electrical & Computer Engineering**
 
@@ -6,7 +6,7 @@
 
 ## 📌 Overview
 
-This repository contains the Register Transfer Level (RTL) implementation of a **Multi-Cycle RISC-V Processor**. This project was developed as the third assignment for the *Computer Architecture* course at the University of Tehran.
+This repository contains the Register Transfer Level (RTL) implementation of a **Multi-Cycle MIPS Processor**. This project was developed as the third assignment for the *Computer Architecture* course at the University of Tehran.
 
 Unlike single-cycle processors, this architecture breaks down instruction execution into multiple clock cycles, allowing for resource sharing (like a single Memory and a single ALU) and potentially higher clock frequencies.
 
@@ -22,7 +22,7 @@ The multi-cycle datapath reduces hardware overhead by reusing key components. Ma
 
 * **Unified Memory:** Acts as both Instruction and Data memory.
 * **ALU:** Performs all arithmetic, logical, and address calculations.
-* **Register File:** Standard RISC-V 32-bit register file.
+* **Register File:** Standard MIPS 32-bit register file.
 * **State Registers:** Intermediate registers (IR, OldPC, MDR, etc.) to hold data between clock cycles.
 
 ### 🎮 Control Logic & State Machine
@@ -100,7 +100,7 @@ Defines how data is routed through the datapath based on control signals:
 The project is organized as follows:
 
 ```text
-RISC-V-Multi-Cycle-Processor-Implementation/
+MIPS-Multi-Cycle-Processor-Implementation/
 ├── Description/           # Project requirements and documents
 │   └── CA#03.pdf          # Problem statement (Assignment 3)
 ├── Design/                # Architecture diagrams and design docs
@@ -118,7 +118,7 @@ RISC-V-Multi-Cycle-Processor-Implementation/
 │   ├── ControlUnit.v      # Main FSM and ALU Control
 │   ├── ALU.v              # Arithmetic Logic Unit
 │   ├── Memory.v           # Combined Instruction/Data Memory
-│   ├── RegisterFile.v     # RISC-V Register File
+│   ├── RegisterFile.v     # MIPS Register File
 │   ├── Register.v         # Basic flip-flop modules for state storage
 │   ├── Mux.v / Adder.v    # Reusable hardware components
 │   └── TestBench.v        # Testbench for verification
