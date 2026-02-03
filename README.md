@@ -33,181 +33,19 @@ The Control Unit is the brain of the multi-cycle processor, implemented as a **F
 
 This table describes the control signals generated in each state of the FSM:
 
-<table style="width:100%; table-layout: fixed; border-collapse: collapse;">
-  <thead>
-    <tr>
-      <th>State</th>
-      <th>PCWrite</th>
-      <th>IRWrite</th>
-      <th>MemRead</th>
-      <th>MemWrite</th>
-      <th>IorD</th>
-      <th>RegWrite</th>
-      <th>MemtoReg</th>
-      <th>ALUSrcB</th>
-      <th>ALUOp</th>
-      <th>RegDst</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>FETCH</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td style="white-space: nowrap;">Instruction Fetch</td>
-    </tr>
-    <tr>
-      <td>DECODE</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td style="white-space: nowrap;">Decode &amp; Register Read</td>
-    </tr>
-    <tr>
-      <td>MEM_ADDR</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td style="white-space: nowrap;">Address Calculation</td>
-    </tr>
-    <tr>
-      <td>MEM_READ</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td style="white-space: nowrap;">Memory Access (Load)</td>
-    </tr>
-    <tr>
-      <td>MEM_WB</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td style="white-space: nowrap;">Write-back from Memory</td>
-    </tr>
-    <tr>
-      <td>MEM_WRITE</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td style="white-space: nowrap;">Memory Access (Store)</td>
-    </tr>
-    <tr>
-      <td>EXEC_TYPE_C</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>Func</td>
-      <td>0</td>
-      <td style="white-space: nowrap;">R-type Execution</td>
-    </tr>
-    <tr>
-      <td>EXEC_TYPE_D</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>Opcode</td>
-      <td>0</td>
-      <td style="white-space: nowrap;">I-type Execution</td>
-    </tr>
-    <tr>
-      <td>WB_ALU</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>Note A</td>
-      <td style="white-space: nowrap;">ALU Write-back</td>
-    </tr>
-    <tr>
-      <td>BRANCH</td>
-      <td>1*</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td style="white-space: nowrap;">Branch Completion</td>
-    </tr>
-    <tr>
-      <td>JUMP</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td style="white-space: nowrap;">Jump Completion</td>
-    </tr>
-  </tbody>
-</table>
-
+| State           | PCWrite | IRWrite | MemRead | MemWrite | IorD | RegWrite | MemtoReg | ALUSrcB | ALUOp  | RegDst | Description            |
+| ----------------| ------- | ------- | ------- | -------- | ---- | -------- | -------- | ------- | ------ | ------ | ---------------------- |
+| **FETCH**       | 1       | 1       | 1       | 0        | 0    | 0        | 0        | 0       | 0      | 0      | Instruction Fetch      |
+| **DECODE**      | 0       | 0       | 0       | 0        | 0    | 0        | 0        | 0       | 0      | 0      | Decode & Reg Read      |
+| **MEM_ADDR**    | 0       | 0       | 0       | 0        | 0    | 0        | 0        | 0       | 0      | 0      | Address Calculation    |
+| **MEM_READ**    | 0       | 0       | 1       | 0        | 1    | 0        | 0        | 0       | 0      | 0      | Memory Access (Load)   |
+| **MEM_WB**      | 0       | 0       | 0       | 0        | 0    | 1        | 1        | 0       | 0      | 0      | Write-back from Memory |
+| **MEM_WRITE**   | 0       | 0       | 0       | 1        | 1    | 0        | 0        | 0       | 0      | 0      | Memory Access (Store)  |
+| **EXEC_TYPE_C** | 0       | 0       | 0       | 0        | 0    | 0        | 0        | 0       | Func   | 0      | R-type Execution       |
+| **EXEC_TYPE_D** | 0       | 0       | 0       | 0        | 0    | 0        | 0        | 1       | Opcode | 0      | I-type Execution       |
+| **WB_ALU**      | 0       | 0       | 0       | 0        | 0    | 1        | 0        | 0       | 0      | Note A | ALU Write-back         |
+| **BRANCH**      | 1*      | 0       | 0       | 0        | 0    | 0        | 0        | 0       | 1      | 0      | Branch Completion      |
+| **JUMP**        | 1       | 0       | 0       | 0        | 0    | 0        | 0        | 0       | 0      | 0      | Jump Completion        |
 
 ### 🔢 ALU Operation Decoding
 
@@ -215,47 +53,47 @@ The ALU Control Unit determines the operation based on the current state and ins
 
 #### R-Type Instruction Logic (Type-C)
 
-| Function Bit | ALUOp | Operation |
-| --- | --- | --- |
-| Func[0] | 3'b101 | Pass In1 |
-| Func[1] | 3'b110 | Pass In2 |
-| Func[2] | 3'b000 | Addition (+) |
-| Func[3] | 3'b001 | Subtraction (-) |
-| Func[4] | 3'b010 | Bitwise AND (&) |
-| Func[5] | 3'b011 | Bitwise OR ( |
-| Func[6] | 3'b100 | Bitwise NOT (~) |
+| Function Bit | ALUOp  | Operation       |
+| ------------ | ------ | --------------- |
+| Func[0]      | 3'b101 | Pass In1        |
+| Func[1]      | 3'b110 | Pass In2        |
+| Func[2]      | 3'b000 | Addition (+)    |
+| Func[3]      | 3'b001 | Subtraction (-) |
+| Func[4]      | 3'b010 | Bitwise AND (&) |
+| Func[5]      | 3'b011 | Bitwise OR (\|) |
+| Func[6]      | 3'b100 | Bitwise NOT (~) |
 
 #### I-Type Instruction Logic (Type-D)
 
-| Opcode | ALUOp | Operation |
-| --- | --- | --- |
+| Opcode  | ALUOp  | Operation            |
+| ------- | ------ | -------------------- |
 | 4'b1100 | 3'b000 | ADDI (Add Immediate) |
 | 4'b1101 | 3'b001 | SUBI (Sub Immediate) |
 | 4'b1110 | 3'b010 | ANDI (And Immediate) |
-| 4'b1111 | 3'b011 | ORI (Or Immediate) |
+| 4'b1111 | 3'b011 | ORI (Or Immediate)   |
 
 ### ⚖️ Conditional Signal Logic
 
 Special conditions for register destinations and program counter updates:
 
-| Signal | Condition | Value | Description |
-| --- | --- | --- | --- |
-| **RegDst** | Opcode == 4'b1000 AND Func[0] == 1 | 1 | Write to IR[11:9] |
-|  | Otherwise | 0 | Write to 3'b000 |
-| **PCSource** | current_state == JUMP | 2'b01 | Jump Target Address |
-|  | current_state == BRANCH AND Zero == 1 | 2'b10 | Branch Target Address |
-|  | Otherwise | 2'b00 | PC + 1 (Default) |
+| Signal             | Condition                             | Value | Description           |
+| ------------------ | ------------------------------------- | ----- | --------------------- |
+| **RegDst**         | Opcode == 4'b1000 AND Func[0] == 1    | 1     | Write to IR[11:9]     |
+|                    | Otherwise                             | 0     | Write to 3'b000       |
+| **PCSource**       | current_state == JUMP                 | 2'b01 | Jump Target Address   |
+|                    | current_state == BRANCH AND Zero == 1 | 2'b10 | Branch Target Address |
+|                    | Otherwise                             | 2'b00 | PC + 1 (Default)      |
 
 ### 🔌 Multiplexer Selection Logic
 
 Defines how data is routed through the datapath based on control signals:
 
-| Mux Name | Selection Signal | sel=0 Output | sel=1 Output |
-| --- | --- | --- | --- |
-| **AdrMux** | IorD | PC_Out | IR_Address_Ext |
-| **WDMux** | MemtoReg | ALU_Result_Reg | MDR_Out |
-| **RegDstMux** | RegDst | 3'b000 | IR_Out[11:9] |
-| **SrcBMux** | ALUSrcB | B_Out (if 00) | Imm_Ext (if 01) |
+| Mux Name            | Selection Signal | sel=0 Output   | sel=1 Output    |
+| ------------------- | ---------------- | -------------- | --------------- |
+| **AdrMux**          | IorD             | PC_Out         | IR_Address_Ext  |
+| **WDMux**           | MemtoReg         | ALU_Result_Reg | MDR_Out         |
+| **RegDstMux**       | RegDst           | 3'b000         | IR_Out[11:9]    |
+| **SrcBMux**         | ALUSrcB          | B_Out (if 00)  | Imm_Ext (if 01) |
 
 ## 📂 Repository Structure
 
