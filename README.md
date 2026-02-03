@@ -33,19 +33,181 @@ The Control Unit is the brain of the multi-cycle processor, implemented as a **F
 
 This table describes the control signals generated in each state of the FSM:
 
-| State | PCWrite | IRWrite | MemRead | MemWrite | IorD | RegWrite | MemtoReg | ALUSrcB | ALUOp | RegDst | Description |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| **FETCH** | 1 | 1 | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | Instruction Fetch |
-| **DECODE** | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | Decode & Reg Read |
-| **MEM_ADDR** | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | Address Calculation |
-| **MEM_READ** | 0 | 0 | 1 | 0 | 1 | 0 | 0 | 0 | 0 | 0 | Memory Access (Load) |
-| **MEM_WB** | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 0 | 0 | 0 | Write-back from Memory |
-| **MEM_WRITE** | 0 | 0 | 0 | 1 | 1 | 0 | 0 | 0 | 0 | 0 | Memory Access (Store) |
-| **EXEC_TYPE_C** | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | Func | 0 | R-type Execution |
-| **EXEC_TYPE_D** | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | Opcode | 0 | I-type Execution |
-| **WB_ALU** | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 0 | 0 | Note A | ALU Write-back |
-| **BRANCH** | 1* | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 0 | Branch Completion |
-| **JUMP** | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | Jump Completion |
+<table style="width:100%; table-layout: fixed; border-collapse: collapse;">
+  <thead>
+    <tr>
+      <th>State</th>
+      <th>PCWrite</th>
+      <th>IRWrite</th>
+      <th>MemRead</th>
+      <th>MemWrite</th>
+      <th>IorD</th>
+      <th>RegWrite</th>
+      <th>MemtoReg</th>
+      <th>ALUSrcB</th>
+      <th>ALUOp</th>
+      <th>RegDst</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>FETCH</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td style="white-space: nowrap;">Instruction Fetch</td>
+    </tr>
+    <tr>
+      <td>DECODE</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td style="white-space: nowrap;">Decode &amp; Register Read</td>
+    </tr>
+    <tr>
+      <td>MEM_ADDR</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td style="white-space: nowrap;">Address Calculation</td>
+    </tr>
+    <tr>
+      <td>MEM_READ</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td style="white-space: nowrap;">Memory Access (Load)</td>
+    </tr>
+    <tr>
+      <td>MEM_WB</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td style="white-space: nowrap;">Write-back from Memory</td>
+    </tr>
+    <tr>
+      <td>MEM_WRITE</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td style="white-space: nowrap;">Memory Access (Store)</td>
+    </tr>
+    <tr>
+      <td>EXEC_TYPE_C</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>Func</td>
+      <td>0</td>
+      <td style="white-space: nowrap;">R-type Execution</td>
+    </tr>
+    <tr>
+      <td>EXEC_TYPE_D</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>Opcode</td>
+      <td>0</td>
+      <td style="white-space: nowrap;">I-type Execution</td>
+    </tr>
+    <tr>
+      <td>WB_ALU</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>Note A</td>
+      <td style="white-space: nowrap;">ALU Write-back</td>
+    </tr>
+    <tr>
+      <td>BRANCH</td>
+      <td>1*</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td style="white-space: nowrap;">Branch Completion</td>
+    </tr>
+    <tr>
+      <td>JUMP</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td style="white-space: nowrap;">Jump Completion</td>
+    </tr>
+  </tbody>
+</table>
+
 
 ### 🔢 ALU Operation Decoding
 
